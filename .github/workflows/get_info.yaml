@@ -1,0 +1,34 @@
+name: Getting Deleted Branch Details
+
+on: 
+  delete:
+    branches-ignore: ["main"]
+
+jobs:
+  delete:
+    env:
+      POETRY_VIRTUALENVS_IN_PROJECT: "false"
+      DATABRICKS_HOST: https://dbc-566ab917-ebec.cloud.databricks.com/
+
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          fetch-tags: true
+
+      - name: Install Poetry
+        run: |
+          pipx install poetry
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        id: python
+        with:
+          python-version: "3.10"
+          cache: poetry
+
+      - name: Clean up
+        run: |
+          echo "Clean up for the branch ${{ github.event.ref }}"
