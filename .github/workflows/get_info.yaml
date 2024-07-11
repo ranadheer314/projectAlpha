@@ -1,10 +1,11 @@
 name: getting deleted branch details
 
-on: delete
+on: 
+  delete:
+    branches: ["*"]
 
 jobs:
   delete:
-    if: github.event.ref.type == 'branch'
     runs-on: ubuntu-latest
     steps:
       - name: clean up
