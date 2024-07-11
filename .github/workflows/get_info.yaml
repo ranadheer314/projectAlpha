@@ -1,4 +1,4 @@
-name: getting deleted branch details
+name: Getting Deleted Branch Details
 
 on: 
   delete:
@@ -8,6 +8,6 @@ jobs:
   delete:
     runs-on: ubuntu-latest
     steps:
-      - name: clean up
-          run: |
-            echo "clean up for the branch ${{ github.event.ref }}"
+      - name: Clean up
+        run: |
+          echo "Clean up for the branch ${{ github.event.ref }}"
